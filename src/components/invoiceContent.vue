@@ -13,7 +13,7 @@
       <invoice-summary :items="state.items" />
       <hr class="bg-gradient-to-r h-[1px] border-none from-gray-700 mt-5" />
       <div class="actionbar text-right my-5">
-        <button class="purple-button">Submit</button>
+        <button @click="onSubmit" class="purple-button">Submit</button>
       </div>
     </div>
   </section>
@@ -22,7 +22,11 @@
 import invoiceItems from "../components/invoiceItems.vue";
 import invoiceSummary from "../components/invoiceSummary.vue";
 import contactSection from "../components/contactSection.vue";
-import { reactive, provide } from "vue";
+import { reactive, provide, watch } from "vue";
+const props = defineProps({
+  saveInvoice: Function,
+  activeInvoice: [Object, null],
+});
 const state = reactive({
   contact: {
     contact_name: null,
@@ -48,4 +52,32 @@ const DeleteInvoiceItem = (invoiceItem) => {
 };
 
 provide("DeleteInvoiceItem", DeleteInvoiceItem);
+
+const onSubmit = () => {
+  console.log(state);
+  props.saveInvoice({
+    ...state,
+    created_at: new Date(),
+    id: new Date().getTime(),
+  });
+  state.contact = {
+    contact_name: null,
+    email: null,
+    city: null,
+    country: null,
+    zipcode: null,
+  };
+};
+
+watch(
+  () => props.activeInvoice,
+  (activeInvoice) => {
+    if (activeInvoice) {
+      state.contact = {
+        ...activeInvoice.contact,
+      };
+      state.items = [...activeInvoice.items];
+    }
+  }
+);
 </script>

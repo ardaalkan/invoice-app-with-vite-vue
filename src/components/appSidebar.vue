@@ -2,12 +2,12 @@
   <aside class="bg-gray-700 w-[300px] h-screen">
     <h3 class="text-2xl font-bold mt-2 p-2">Fatura Listesi</h3>
     <div
-      v-for="i in 5"
-      :key="i"
+      v-for="(invoice, i) in invoices"
+      :key="invoice.id"
       class="odd:bg-gray-600 flex justify-between items-center p-2"
     >
-      <span>#45fg4</span>
-      <span>Kablosuzkedi</span>
+      <span>#{{ i }}</span>
+      <span>{{ invoice.contact.contact_name }}</span>
       <span>
         <button class="danger-button mr-1">
           <svg
@@ -23,7 +23,7 @@
             />
           </svg>
         </button>
-        <button class="purple-button">
+        <button class="purple-button" @click="editInvoice(invoice)">
           <svg
             class="fill-current"
             xmlns="http://www.w3.org/2000/svg"
@@ -41,3 +41,6 @@
     </div>
   </aside>
 </template>
+<script setup>
+defineProps({ invoices: Array, editInvoice: Function });
+</script>
