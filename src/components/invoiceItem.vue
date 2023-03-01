@@ -20,7 +20,7 @@
     />
     <span class="p-1 text-center text-gray-400">${{ item.total_price }}</span>
     <div class="text-right flex-grow">
-      <button @click= "DeleteInvoiceItem(item)" class="delete-button">
+      <button @click="DeleteInvoiceItem(item)" class="delete-button">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="fill-current"
@@ -43,7 +43,6 @@ const props = defineProps({ item: Object });
 const totalPrice = computed(() => props.item.qty * props.item.unit_price);
 const DeleteInvoiceItem = inject(["DeleteInvoiceItem"]);
 watch(totalPrice, (totalPrice) => {
-  console.log("totalPrice", totalPrice);
   props.item.total_price = totalPrice;
-})
+});
 </script>

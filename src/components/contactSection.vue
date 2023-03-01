@@ -2,7 +2,9 @@
   <div>
     <heading title="Invoice Information" />
     <label for="client_name" class="flex flex-col text-gray-400 mb-2">
-      <small class="mb-1">Customer Name</small>
+      <div>
+        <small class="mb-1">Customer Name</small>
+      </div>
       <input
         v-model="contact.contact_name"
         autocomplete="off"

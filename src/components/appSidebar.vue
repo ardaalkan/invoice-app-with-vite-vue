@@ -1,5 +1,5 @@
 <template>
-  <aside class="bg-gray-700 w-[300px] h-screen">
+  <aside class="bg-gray-700 w-[300px] h-screen left-0 overflow-y-hidden">
     <h3 class="text-2xl font-bold mt-2 p-2">Fatura Listesi</h3>
     <div
       v-for="(invoice, i) in invoices"

@@ -1,12 +1,12 @@
 <template>
-  <div
-    class="w-screen h-screen bg-gray-800 flex flex-row text-white items-start justify-center"
-  >
+  <div class="w-screen h-auto bg-gray-800 flex flex-row text-white items-start">
     <app-sidebar :invoices="invoiceList" :editInvoice="editInvoice" />
-    <invoice-content
-      :saveInvoice="saveInvoice"
-      :activeInvoice="state.activeInvoice"
-    />
+    <section>
+      <invoice-content
+        :saveInvoice="saveInvoice"
+        :activeInvoice="state.activeInvoice"
+      />
+    </section>
   </div>
 </template>
 
@@ -20,15 +20,15 @@ const invoiceList = ref([
     id: new Date().getTime(),
     contact: {
       contact_name: "demo",
-      email: "demo",
-      city: "demo",
-      country: "demo",
-      zipcode: "demo",
+      email: "demo@demo.com",
+      city: "Demo",
+      country: "Demo",
+      zipcode: "075",
     },
     items: [
       {
         id: new Date().getTime(),
-        name: "demo",
+        name: "Demo Demo",
         qty: 1,
         unit_price: 10.0,
         total_price: 20.0,
@@ -37,11 +37,12 @@ const invoiceList = ref([
   },
 ]);
 const saveInvoice = (invoice) => {
-  console.log("invoice", invoice);
+  // console.log("invoice", invoice);
   invoiceList.value.push(invoice);
 };
 const editInvoice = (invoice) => {
-  console.log(invoice);
+  // console.log(invoice);
   state.activeInvoice = invoice;
+  state.sectionVisible = invoice;
 };
 </script>
