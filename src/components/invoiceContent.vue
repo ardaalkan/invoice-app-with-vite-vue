@@ -1,9 +1,9 @@
 <template>
-  <button @click="toggleSection" class="purple-button p-3 mt-14 ml-10">
+  <button @click="toggleSection" class="purple-button p-3 mt-14 ml-10 ">
     Add New Invoice
   </button>
   <section
-    class="bg-gray-900 w-full mx-auto mt-10 ml-10 p-5 px-5 rounded-md shadow-2xl m-10"
+    class="bg-gray-900 mx-auto mt-10 ml-10 p-5 px-5 rounded-md shadow-2xl m-10 w-full"
     :class="{ 'section-bounce': show }"
   >
     <contact-section :contact="state.contact" />

@@ -5,7 +5,7 @@
     </div>
     <div class="flex-1 space-y-2">
       <h2 :class="titleClass">{{ props.title }}</h2>
-      <div :class="contentClass"><slot /></div>
+      <div :class="contentClass"><slot/></div>
     </div>
     <div v-if="props.onDismiss" class="shrink-0">
       <button :class="closeButtonClass" @click="dismiss()">
@@ -24,24 +24,19 @@ import {
   // faUserCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { propsToAttrMap } from "@vue/shared";
 import { cva } from "class-variance-authority";
 import { ref, computed } from "vue";
-
 const intent = "info";
-
 const userIcon = ref(faUser);
 // const userInfo = ref(faInfo);
 // const close = ref(faClose);
 // const warning = ref(faWarning);
 // const checkIcon = ref(faUserCheck);
-
 function dismiss() {
   if (props.onDismiss) {
     props.onDismiss();
   }
 }
-
 const props = defineProps({
   intent: {
     type: String,
@@ -56,12 +51,7 @@ const props = defineProps({
     default: true,
   },
   onDismiss: Function,
-  dismissLabel: {
-    type: String,
-    default: "Dismiss",
-  },
 });
-
 const containerClass = computed(() => {
   return cva("flex fixed bottom-0 right-0 p-4 rounded-md space-x-3 m-10", {
     variants: {
@@ -76,7 +66,6 @@ const containerClass = computed(() => {
     intent: intent,
   });
 });
-
 const iconClass = computed(() => {
   return cva("w-6 h-6", {
     variants: {
@@ -91,7 +80,6 @@ const iconClass = computed(() => {
     intent: intent,
   });
 });
-
 const titleClass = computed(() => {
   return cva("font-medium text-black", {
     variants: {
@@ -106,7 +94,6 @@ const titleClass = computed(() => {
     intent: intent,
   });
 });
-
 const contentClass = computed(() => {
   return cva("text-sm", {
     variants: {
@@ -121,7 +108,6 @@ const contentClass = computed(() => {
     intent: intent,
   });
 });
-
 const closeButtonClass = computed(() => {
   return cva("p-0.5 rounded-md flex my-auto -m-1", {
     variants: {

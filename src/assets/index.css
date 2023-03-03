@@ -52,3 +52,8 @@
   animation-name: bounce;
   animation-duration: 0.7s;
 }
+
+.menu-scroll {
+  transform: translateX(calc(-75% - 1rem));
+  transition: transform 0.5s ease-in-out;
+}

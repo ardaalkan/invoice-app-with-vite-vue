@@ -1,6 +1,12 @@
 <template>
-  <aside class="bg-gray-700 w-[300px] h-screen left-0 overflow-y-hidden">
-    <h3 class="text-2xl font-bold mt-2 p-2">Fatura Listesi</h3>
+  <aside
+    class="fixed rounded-xl inset-y-0 left-0 z-40 bg-gray-700 w-[300px] shadow-xl transform transition-transform ease-in-out duration-500"
+    :class="{ 'menu-scroll': scroll }"
+  >
+    <div class="flex flex-row justify-between p-2">
+      <h3 class="text-2xl font-bold mt-2 p-2">Invoice List</h3>
+      <menuBtn @click="toggleSection" />
+    </div>
     <div
       v-for="(invoice, i) in invoices"
       :key="invoice.id"
@@ -42,5 +48,14 @@
   </aside>
 </template>
 <script setup>
+import menuBtn from "./menuBtn.vue";
+import { ref } from "vue";
+
 defineProps({ invoices: Array, editInvoice: Function });
+
+const scroll = ref(false);
+
+function toggleSection() {
+  scroll.value = !scroll.value;
+}
 </script>

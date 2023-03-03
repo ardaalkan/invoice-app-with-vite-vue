@@ -1,13 +1,9 @@
 <template>
-  <div class="w-screen h-auto bg-gray-800 flex flex-row text-white items-start">
-    <app-sidebar :invoices="invoiceList" :editInvoice="editInvoice" />
-    <section>
-      <invoice-content
-        :saveInvoice="saveInvoice"
-        :activeInvoice="state.activeInvoice"
-      />
-    </section>
-  </div>
+  <app-sidebar :invoices="invoiceList" :editInvoice="editInvoice" />
+  <invoice-content
+    :saveInvoice="saveInvoice"
+    :activeInvoice="state.activeInvoice"
+  />
 </template>
 
 <script setup>
