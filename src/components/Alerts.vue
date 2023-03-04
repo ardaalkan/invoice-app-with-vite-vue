@@ -5,7 +5,7 @@
     </div>
     <div class="flex-1 space-y-2">
       <h2 :class="titleClass">{{ props.title }}</h2>
-      <div :class="contentClass"><slot/></div>
+      <div :class="contentClass"><slot /></div>
     </div>
     <div v-if="props.onDismiss" class="shrink-0">
       <button :class="closeButtonClass" @click="dismiss()">

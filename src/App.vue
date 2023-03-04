@@ -1,5 +1,9 @@
 <template>
-  <app-sidebar :invoices="invoiceList" :editInvoice="editInvoice" />
+  <app-sidebar
+    :invoices="invoiceList"
+    :editInvoice="editInvoice"
+    :deleteInvoice="deleteInvoice"
+  />
   <invoice-content
     :saveInvoice="saveInvoice"
     :activeInvoice="state.activeInvoice"
@@ -40,5 +44,10 @@ const editInvoice = (invoice) => {
   // console.log(invoice);
   state.activeInvoice = invoice;
   state.sectionVisible = invoice;
+};
+
+const deleteInvoice = (invoice) => {
+  // console.log(invoice);
+  invoiceList.value = invoiceList.value.filter((i) => i.id !== invoice.id);
 };
 </script>

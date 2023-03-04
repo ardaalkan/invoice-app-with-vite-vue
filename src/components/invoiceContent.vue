@@ -1,5 +1,5 @@
 <template>
-  <button @click="toggleSection" class="purple-button p-3 mt-14 ml-10 ">
+  <button @click="toggleSection" class="purple-button p-3 mt-14 ml-10">
     Add New Invoice
   </button>
   <section

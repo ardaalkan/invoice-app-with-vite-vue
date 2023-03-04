@@ -5,9 +5,13 @@
   >
     <div class="flex flex-row justify-between p-2">
       <h3 class="text-2xl font-bold mt-2 p-2">Invoice List</h3>
-      <menuBtn @click="toggleSection" />
+      <menuBtn @click="toggleSection" :class="{ rotate: scroll }" />
+    </div>
+    <div v-if="invoices.lenght === 0">
+      <p>error</p>
     </div>
     <div
+      v-else
       v-for="(invoice, i) in invoices"
       :key="invoice.id"
       class="odd:bg-gray-600 flex justify-between items-center p-2"
@@ -15,7 +19,7 @@
       <span>#{{ i }}</span>
       <span>{{ invoice.contact.contact_name }}</span>
       <span>
-        <button class="danger-button mr-1">
+        <button class="danger-button mr-1" @click="deleteInvoice(invoice)">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="fill-current"
@@ -51,7 +55,11 @@
 import menuBtn from "./menuBtn.vue";
 import { ref } from "vue";
 
-defineProps({ invoices: Array, editInvoice: Function });
+defineProps({
+  invoices: Array,
+  editInvoice: Function,
+  deleteInvoice: Function,
+});
 
 const scroll = ref(false);
 

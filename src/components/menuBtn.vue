@@ -1,16 +1,16 @@
 <template>
-    <button :class="closeButtonClass">
-      <font-awesome-icon :icon="backward" />
-    </button>
+  <button :class="closeButtonClass">
+    <font-awesome-icon :icon="backward" />
+  </button>
 </template>
 
 <script setup>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { cva } from "class-variance-authority";
 import { ref, computed } from "vue";
-import { faBackwardFast } from "@fortawesome/free-solid-svg-icons";
+import { faRotate } from "@fortawesome/free-solid-svg-icons";
 
-const backward = ref(faBackwardFast);
+const backward = ref(faRotate);
 
 const intent = open;
 
@@ -22,14 +22,11 @@ const props = defineProps({
     },
     default: "open",
   },
-  scroll: {
-    type: Boolean,
-    default: true,
-  },
+  onTurn: { Function },
 });
 
 const closeButtonClass = computed(() => {
-  return cva("p-1 rounded-md mt-3", {
+  return cva("p-3 rounded-md mt-3 outline-none ", {
     variants: {
       intent: {
         open: "bg-blue-600",
