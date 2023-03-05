@@ -14,7 +14,9 @@
 import { ref, reactive } from "vue";
 import appSidebar from "./components/appSidebar.vue";
 import invoiceContent from "./components/invoiceContent.vue";
+
 const state = reactive({ activeInvoice: null });
+const showAlert = ref(true);
 const invoiceList = ref([
   {
     id: new Date().getTime(),
@@ -48,6 +50,13 @@ const editInvoice = (invoice) => {
 
 const deleteInvoice = (invoice) => {
   // console.log(invoice);
-  invoiceList.value = invoiceList.value.filter((i) => i.id !== invoice.id);
+  showAlert.value = true;
+  const confirmed = confirm("Silmek istediğinize emin misiniz?");
+  if (confirmed) {
+    invoiceList.value = invoiceList.value.filter((i) => i.id !== invoice.id);
+    console.log(showAlert.value);
+  } else {
+    showAlert.value = false;
+  }
 };
 </script>
