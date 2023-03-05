@@ -8,15 +8,28 @@
     :saveInvoice="saveInvoice"
     :activeInvoice="state.activeInvoice"
   />
+  <Transition
+    leave-active-class="duration-300"
+    leave-to-class="opacity-0"
+    enter-active-class="duration-100"
+    enter-to-class="opacity-100"
+  >
+    <DeleteComponent
+      :show="showAlert"
+      :on-dismiss="() => (showAlert = false)"
+      :deleteInvoice="deleteInvoice"
+    />
+  </Transition>
 </template>
 
 <script setup>
 import { ref, reactive } from "vue";
 import appSidebar from "./components/appSidebar.vue";
 import invoiceContent from "./components/invoiceContent.vue";
+import DeleteComponent from "./components/DeleteComponent.vue";
 
 const state = reactive({ activeInvoice: null });
-const showAlert = ref(true);
+const showAlert = ref(false);
 const invoiceList = ref([
   {
     id: new Date().getTime(),
@@ -49,11 +62,9 @@ const editInvoice = (invoice) => {
 };
 
 const deleteInvoice = (invoice) => {
-  // console.log(invoice);
+  console.log(invoice);
   showAlert.value = true;
-  const confirmed = confirm("Silmek istediğinize emin misiniz?");
-  if (confirmed) {
-    invoiceList.value = invoiceList.value.filter((i) => i.id !== invoice.id);
+  if (showAlert.value) {
     console.log(showAlert.value);
   } else {
     showAlert.value = false;
