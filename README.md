@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `npm run dev`
 
-`Invoice App Invoice App Invoice App Invoice App Invoice App.`
+`An application that includes adding and deleting reactive documents with vue3 composition api.`
 
 | **Dependency**          | **Use**                                              |
 | ----------------        | ---------------------------------------------------- |
