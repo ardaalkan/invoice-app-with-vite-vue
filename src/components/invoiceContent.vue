@@ -71,10 +71,13 @@ const AddInvoiceItem = () => {
     total_price: 0.0,
   });
 };
+
 const DeleteInvoiceItem = (invoiceItem) => {
   state.items = state.items.filter((i) => i.id !== invoiceItem.id);
   // console.log(invoiceItem);
 };
+
+provide("DeleteInvoiceItem", DeleteInvoiceItem);
 
 const toggleSection = () => {
   // console.log("toggle section!");
@@ -87,8 +90,6 @@ const toggleSection = () => {
   };
   show.value = !show.value;
 };
-
-provide("DeleteInvoiceItem", DeleteInvoiceItem);
 
 const onSubmit = () => {
   if (

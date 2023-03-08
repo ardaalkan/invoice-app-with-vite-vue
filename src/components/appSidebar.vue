@@ -19,7 +19,7 @@
       <span>#{{ i }}</span>
       <span>{{ invoice.contact.contact_name }}</span>
       <span>
-        <button class="danger-button mr-1" @click="deleteInvoice(invoice)">
+        <button class="danger-button mr-1" @click="toggleDeleteAlert">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="fill-current"
@@ -58,7 +58,10 @@ import { ref } from "vue";
 defineProps({
   invoices: Array,
   editInvoice: Function,
-  deleteInvoice: Function,
+  toggleDeleteAlert: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const scroll = ref(false);

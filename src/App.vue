@@ -2,7 +2,7 @@
   <app-sidebar
     :invoices="invoiceList"
     :editInvoice="editInvoice"
-    :deleteInvoice="deleteInvoice"
+    :toggleDeleteAlert="toggle"
   />
   <invoice-content
     :saveInvoice="saveInvoice"
@@ -17,13 +17,12 @@
     <DeleteComponent
       :show="showAlert"
       :on-dismiss="() => (showAlert = false)"
-      :deleteInvoice="deleteInvoice"
     />
   </Transition>
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, provide } from "vue";
 import appSidebar from "./components/appSidebar.vue";
 import invoiceContent from "./components/invoiceContent.vue";
 import DeleteComponent from "./components/DeleteComponent.vue";
@@ -61,13 +60,19 @@ const editInvoice = (invoice) => {
   state.sectionVisible = invoice;
 };
 
-const deleteInvoice = (invoice) => {
-  console.log(invoice);
-  showAlert.value = true;
-  if (showAlert.value) {
-    console.log(showAlert.value);
-  } else {
-    showAlert.value = false;
-  }
+const toggle = () => {
+  showAlert.value = !showAlert.value;
+  console.log(showAlert.value);
 };
+
+const deleteInvoice = (invoice) => {
+  const index = invoiceList.value.findIndex((inv) => inv.id === invoice?.id);
+  if (index !== -1) {
+    invoiceList.value.splice(index, 1);
+  }
+  state.activeInvoice = null;
+  toggle();
+};
+
+provide("deleteInvoice", deleteInvoice);
 </script>
